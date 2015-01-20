@@ -19,7 +19,7 @@ public class Swival extends PIDSubsystem {
 	 private SpeedController swival=RobotMap.SWIVAL_MOTOR;
 	    private Encoder encoder;
 
-	    private static final double kP_real = 1;
+	    private static final double kP_real = 1/100.0;
 	    
     // Initialize your subsystem here
     public Swival() {
@@ -52,6 +52,13 @@ public class Swival extends PIDSubsystem {
      * the subsystem.
      */
     protected void usePIDOutput(double d) {
+        if(d>=1){
+            d=1;
+        }else if(d<=-1){
+            d=-1;
+        }else if(-.1<d&&d<.1){
+            d=2*d;
+        }
        	swival.set(d);
     }
 }
