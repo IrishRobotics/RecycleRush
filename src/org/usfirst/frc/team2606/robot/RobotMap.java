@@ -1,5 +1,8 @@
 package org.usfirst.frc.team2606.robot;
 
+import edu.wpi.first.wpilibj.CounterBase;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -21,13 +24,18 @@ public class RobotMap {
     // number and the module. For example you with a rangefinder:
     // public static int rangefinderPort = 1;
     // public static int rangefinderModule = 1;
-	public static SpeedController LEFT_MOTOR = new Talon(0);
-	public static SpeedController RIGHT_MOTOR=new Talon(1);
+	public static SpeedController LEFT_MOTOR = new Jaguar(0);
+	public static SpeedController RIGHT_MOTOR=new Jaguar(1);
+	public static SpeedController SWIVAL_MOTOR = new Talon(3);
+	
 	public static Joystick LEFT_JOYSTICK = new Joystick(0);
 	public static Joystick RIGHT_JOYSTICK = new Joystick(1);
+	
 	public static Solenoid OPEN_CLAW_SOLENOID = new Solenoid(0);
 	public static Solenoid CLOSE_CLAW_SOLENOID = new Solenoid(1);
 	public static Solenoid ARM_UP_SOLENOID = new Solenoid(2);
 	public static Solenoid ARM_DOWN_SOLENOID = new Solenoid(3);
+	
+	public static Encoder SWIVAL_ENCODER = new Encoder(0,1,false,CounterBase.EncodingType.k4X);
 	
 }

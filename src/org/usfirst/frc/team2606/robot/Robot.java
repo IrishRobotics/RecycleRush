@@ -2,6 +2,7 @@ package org.usfirst.frc.team2606.robot;
 
 import org.usfirst.frc.team2606.robot.subsystems.Claw;
 import org.usfirst.frc.team2606.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2606.robot.subsystems.Swival;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -16,6 +17,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class Robot extends IterativeRobot {
 	public static DriveTrain drivetrain;
+	public static Swival swival;
 	public static Claw claw;
 	public static OI oi;
 
@@ -27,6 +29,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		drivetrain = new DriveTrain();
+		swival = new Swival();
 		claw = new Claw();
 		oi = new OI();
 		// instantiate the command used for the autonomous period
