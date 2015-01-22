@@ -19,11 +19,11 @@ public class Swivel extends PIDSubsystem {
 	 private SpeedController swivel=RobotMap.SWIVEL_MOTOR;
 	    private Encoder encoder;
 
-	    private static final double kP_real = 1/100.0;
+	    private static final double kP = 1/100.0,kI=0,kD = 0;
 	    
     // Initialize your subsystem here
     public Swivel() {
-    	super(kP_real,0, 0);
+    	super(kP,kI, kD);
         setAbsoluteTolerance(0.005);
         
         // Conversion value of potentiometer varies between the real world and simulation
