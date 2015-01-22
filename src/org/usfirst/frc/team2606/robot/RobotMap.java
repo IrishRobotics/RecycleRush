@@ -26,7 +26,7 @@ public class RobotMap {
     // public static int rangefinderModule = 1;
 	public static SpeedController LEFT_MOTOR = new Jaguar(0);
 	public static SpeedController RIGHT_MOTOR=new Jaguar(1);
-	public static SpeedController SWIVAL_MOTOR = new Talon(3);
+	public static SpeedController SWIVEL_MOTOR = new Talon(3);
 	
 	public static Joystick LEFT_JOYSTICK = new Joystick(0);
 	public static Joystick RIGHT_JOYSTICK = new Joystick(1);
@@ -36,6 +36,6 @@ public class RobotMap {
 	public static Solenoid ARM_UP_SOLENOID = new Solenoid(2);
 	public static Solenoid ARM_DOWN_SOLENOID = new Solenoid(3);
 	
-	public static Encoder SWIVAL_ENCODER = new Encoder(0,1,false,CounterBase.EncodingType.k4X);
+	public static Encoder SWIVEL_ENCODER = new Encoder(0,1,false,CounterBase.EncodingType.k4X);
 	
 }

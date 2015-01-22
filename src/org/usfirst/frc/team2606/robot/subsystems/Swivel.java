@@ -15,20 +15,20 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class Swival extends PIDSubsystem {
-	 private SpeedController swival=RobotMap.SWIVAL_MOTOR;
+public class Swivel extends PIDSubsystem {
+	 private SpeedController swivel=RobotMap.SWIVEL_MOTOR;
 	    private Encoder encoder;
 
 	    private static final double kP_real = 1/100.0;
 	    
     // Initialize your subsystem here
-    public Swival() {
+    public Swivel() {
     	super(kP_real,0, 0);
         setAbsoluteTolerance(0.005);
         
         // Conversion value of potentiometer varies between the real world and simulation
         
-            encoder=RobotMap.SWIVAL_ENCODER;
+            encoder=RobotMap.SWIVEL_ENCODER;
            
     }
 
@@ -59,6 +59,6 @@ public class Swival extends PIDSubsystem {
         }else if(-.1<d&&d<.1){
             d=2*d;
         }
-       	swival.set(d);
+       	swivel.set(d);
     }
 }

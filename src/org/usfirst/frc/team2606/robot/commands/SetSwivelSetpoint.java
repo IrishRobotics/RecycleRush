@@ -7,19 +7,19 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class SetSwivalSetpoint extends Command {
+public class SetSwivelSetpoint extends Command {
 public int setPoint;
-    public SetSwivalSetpoint(int setPoint) {
+    public SetSwivelSetpoint(int setPoint) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	this.setPoint = setPoint;
-    	requires(Robot.swival);
+    	requires(Robot.swivel);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	 Robot.swival.enable();
-    	 Robot.swival.setSetpoint(setPoint);
+    	 Robot.swivel.enable();
+    	 Robot.swivel.setSetpoint(setPoint);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -28,12 +28,12 @@ public int setPoint;
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Robot.swival.onTarget();
+    	return Robot.swivel.onTarget();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.swival.disable();
+    	Robot.swivel.disable();
     }
 
     // Called when another command which requires one or more of the same
