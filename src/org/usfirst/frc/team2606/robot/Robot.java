@@ -2,6 +2,7 @@ package org.usfirst.frc.team2606.robot;
 
 import org.usfirst.frc.team2606.robot.subsystems.Claw;
 import org.usfirst.frc.team2606.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2606.robot.subsystems.Elbow;
 import org.usfirst.frc.team2606.robot.subsystems.Swivel;
 
 import edu.wpi.first.wpilibj.Encoder;
@@ -21,6 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 	public static DriveTrain drivetrain;
 	public static Swivel swivel;
+	public static Elbow elbow;
 	public static Claw claw;
 	public static OI oi;
 	private Encoder encoder = RobotMap.SWIVEL_ENCODER;
@@ -35,6 +37,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		drivetrain = new DriveTrain();
 		swivel = new Swivel();
+		elbow = new Elbow();
 		claw = new Claw();
 		oi = new OI();
 		// instantiate the command used for the autonomous period

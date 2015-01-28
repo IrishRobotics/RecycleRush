@@ -1,9 +1,11 @@
 package org.usfirst.frc.team2606.robot;
 
 import org.usfirst.frc.team2606.robot.commands.CloseClaw;
+import org.usfirst.frc.team2606.robot.commands.DownElbow;
 import org.usfirst.frc.team2606.robot.commands.OpenClaw;
 import org.usfirst.frc.team2606.robot.commands.TestCommandGroupLeft;
 import org.usfirst.frc.team2606.robot.commands.TestCommandGroupRight;
+import org.usfirst.frc.team2606.robot.commands.UpElbow;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -50,10 +52,14 @@ public class OI {
 		JoystickButton d_right = new JoystickButton(leftJoystick, 5);
 		JoystickButton d_down = new JoystickButton(leftJoystick, 2);
 		JoystickButton d_left = new JoystickButton(leftJoystick, 4);
-		d_left.whenPressed(new TestCommandGroupLeft());
-		d_right.whenPressed(new TestCommandGroupRight());
-		d_up.whenPressed(new CloseClaw());
-		d_down.whenPressed(new OpenClaw());
+		JoystickButton left = new JoystickButton(leftJoystick, 8);
+		JoystickButton right = new JoystickButton(leftJoystick, 9);
+		d_down.whenPressed(new DownElbow());
+		d_up.whenPressed(new UpElbow());
+		d_left.whenPressed(new CloseClaw());
+		d_right.whenPressed(new OpenClaw());
+		left.whenPressed(new TestCommandGroupLeft());
+		right.whenPressed(new TestCommandGroupRight());
 	}
 
 	public Joystick getLeftJoystick() {

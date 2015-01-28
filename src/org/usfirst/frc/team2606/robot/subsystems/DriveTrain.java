@@ -106,7 +106,7 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public double getDistanceInInches() {
-		return (leftEncoder.getDistance() + rightEncoder.getDistance()) * 6.0;
+		return 0.0;//(leftEncoder.getDistance() + rightEncoder.getDistance()) * 6.0;
 	}
 
 }
