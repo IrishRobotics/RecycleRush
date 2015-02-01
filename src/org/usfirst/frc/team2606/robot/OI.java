@@ -48,12 +48,12 @@ public class OI {
 	private Joystick rightJoystick = RobotMap.RIGHT_JOYSTICK;
 
 	public OI() {
-		JoystickButton d_up = new JoystickButton(leftJoystick, 3);
-		JoystickButton d_right = new JoystickButton(leftJoystick, 5);
-		JoystickButton d_down = new JoystickButton(leftJoystick, 2);
-		JoystickButton d_left = new JoystickButton(leftJoystick, 4);
-		JoystickButton left = new JoystickButton(leftJoystick, 8);
-		JoystickButton right = new JoystickButton(leftJoystick, 9);
+		JoystickButton d_up = new JoystickButton(leftJoystick, 4);
+		JoystickButton d_right = new JoystickButton(leftJoystick, 2);
+		JoystickButton d_down = new JoystickButton(leftJoystick, 1);
+		JoystickButton d_left = new JoystickButton(leftJoystick, 3);
+		JoystickButton left = new JoystickButton(leftJoystick, 5);
+		JoystickButton right = new JoystickButton(leftJoystick, 6);
 		d_down.whenPressed(new DownElbow());
 		d_up.whenPressed(new UpElbow());
 		d_left.whenPressed(new CloseClaw());

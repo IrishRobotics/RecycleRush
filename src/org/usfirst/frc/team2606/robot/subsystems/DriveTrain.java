@@ -23,9 +23,10 @@ public class DriveTrain extends Subsystem {
 	private SpeedController leftMotor = RobotMap.LEFT_MOTOR;
 	private SpeedController rightMotor = RobotMap.RIGHT_MOTOR;
 	private RobotDrive drive;
-	private Gyro gyro = RobotMap.GYRO;
-	private double gyroDesiredHeading;
-	private Encoder leftEncoder, rightEncoder;
+	private int direction;
+	// private Gyro gyro = RobotMap.GYRO;
+	// private double gyroDesiredHeading;
+	// private Encoder leftEncoder, rightEncoder;
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -33,10 +34,10 @@ public class DriveTrain extends Subsystem {
 	public DriveTrain() {
 		super();
 		drive = new RobotDrive(leftMotor, rightMotor);
-		leftEncoder = new Encoder(1, 2);
-		rightEncoder = new Encoder(3, 4);
-		leftEncoder.setDistancePerPulse((6.0 / 12.0 * Math.PI) / 160.0);
-		rightEncoder.setDistancePerPulse((6.0 / 12.0 * Math.PI) / 160.0);
+		// leftEncoder = new Encoder(1, 2);
+		// rightEncoder = new Encoder(3, 4);
+		// leftEncoder.setDistancePerPulse((6.0 / 12.0 * Math.PI) / 160.0);
+		// rightEncoder.setDistancePerPulse((6.0 / 12.0 * Math.PI) / 160.0);
 	}
 
 	/**
@@ -76,37 +77,47 @@ public class DriveTrain extends Subsystem {
 	 * @param joy
 	 *            The ps3 style joystick to use to drive tank style.
 	 */
-	public void drive(Joystick leftJoystick, Joystick rightJoystick) {
-		drive(-leftJoystick.getY(), -rightJoystick.getY());
+	public void drive(Joystick leftJoystick) {
+		if(leftJoystick.getRawAxis(3) < -.75){
+			//drive(leftJoystick.getRawAxis(1) , leftJoystick.getRawAxis(5));
+			direction = 1;
+			 SmartDashboard.putNumber("Reverse", leftJoystick.getRawAxis(3));
+		}else{
+			direction = -1;
+			 SmartDashboard.putNumber("straight", leftJoystick.getRawAxis(3) * direction);
+		}
+			 //drive(leftJoystick.getRawAxis(1) * direction, leftJoystick.getRawAxis(5) * direction);
 	}
 
 	/**
 	 * Reset the robots sensors to the zero states.
 	 */
 	public void reset() {
-		leftEncoder.reset();
-		rightEncoder.reset();
-		gyro.reset();
+		// leftEncoder.reset();
+		// rightEncoder.reset();
+		// gyro.reset();
 	}
 
 	public void setGyroDesiredHeading() {
-		gyroDesiredHeading = gyro.getAngle();
+		// gyroDesiredHeading = gyro.getAngle();
 	}
 
 	public double getGyroRealHeading() {
-		return gyro.getAngle();
+		return 0.0;// gyro.getAngle();
 	}
 
 	public double GyroAngleError() {
-		return gyro.getAngle()-gyroDesiredHeading;
+		return 0.0;// gyro.getAngle()-gyroDesiredHeading;
 	}
 
 	public double getDistanceInFeet() {
-		return (leftEncoder.getDistance() + rightEncoder.getDistance()) / 2.0;
+		return 0.0;// (leftEncoder.getDistance() + rightEncoder.getDistance()) /
+					// 2.0;
 	}
 
 	public double getDistanceInInches() {
-		return 0.0;//(leftEncoder.getDistance() + rightEncoder.getDistance()) * 6.0;
+		return 0.0;// (leftEncoder.getDistance() + rightEncoder.getDistance()) *
+					// 6.0;
 	}
 
 }

@@ -17,32 +17,32 @@ public class DriveStraight extends Command {
 	public DriveStraight(double distance) {
 		requires(Robot.drivetrain);
 		Robot.drivetrain.setGyroDesiredHeading();
-		pid = new PIDController(driveKP, 0, 0, new PIDSource() {
-			public double pidGet() {
-				return Robot.drivetrain.getDistanceInFeet();
-			}
-		}, new PIDOutput() {
-			public void pidWrite(double d) {
-				double gyroError = gyroKP * Robot.drivetrain.GyroAngleError();
-				if (gyroError > 0) {
-					Robot.drivetrain.drive(d-gyroError, d);
-				} else if (gyroError < 0) {
-					Robot.drivetrain.drive(d, d+gyroError);
-				} else {
-					Robot.drivetrain.drive(d, d);
-				}
-			}
-		});
-		pid.setAbsoluteTolerance(0.01);
-		pid.setSetpoint(distance);
+//		pid = new PIDController(driveKP, 0, 0, new PIDSource() {
+//			public double pidGet() {
+//				return Robot.drivetrain.getDistanceInFeet();
+//			}
+//		}, new PIDOutput() {
+//			public void pidWrite(double d) {
+//				double gyroError = gyroKP * Robot.drivetrain.GyroAngleError();
+//				if (gyroError > 0) {
+//					Robot.drivetrain.drive(d-gyroError, d);
+//				} else if (gyroError < 0) {
+//					Robot.drivetrain.drive(d, d+gyroError);
+//				} else {
+//					Robot.drivetrain.drive(d, d);
+//				}
+//			}
+//		});
+//		pid.setAbsoluteTolerance(0.01);
+//		pid.setSetpoint(distance);
 	}
 
 	protected void initialize() {
 		// Get everything in a safe starting state.
 		Robot.drivetrain.reset();
 		// Called just before this Command runs the first time
-		pid.reset();
-		pid.enable();
+//		pid.reset();
+//		pid.enable();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -51,13 +51,13 @@ public class DriveStraight extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return pid.onTarget();
+		return false; //pid.onTarget();
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
 		// Stop PID and the wheels
-		pid.disable();
+		//pid.disable();
 		Robot.drivetrain.drive(0, 0);
 	}
 
