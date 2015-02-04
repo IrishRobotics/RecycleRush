@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2606.robot;
 
+import org.usfirst.frc.team2606.robot.commands.CloseClaw;
+import org.usfirst.frc.team2606.robot.commands.OpenClaw;
 import org.usfirst.frc.team2606.robot.subsystems.Claw;
 import org.usfirst.frc.team2606.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2606.robot.subsystems.Elbow;
@@ -27,7 +29,6 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	private Encoder encoder = RobotMap.SWIVEL_ENCODER;
 	private Gyro gyro = RobotMap.GYRO;
-
 	// Command autonomousCommand;
 
 	/**
@@ -87,6 +88,8 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		SmartDashboard.putNumber("Encoder Value", RobotMap.SWIVEL_ENCODER.get());
 		SmartDashboard.putNumber("Gyro angle ", gyro.getAngle());
+
+		claw.open();
 	}
 
 	/**

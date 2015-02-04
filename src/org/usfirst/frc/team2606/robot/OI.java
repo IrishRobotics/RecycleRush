@@ -6,6 +6,7 @@ import org.usfirst.frc.team2606.robot.commands.OpenClaw;
 import org.usfirst.frc.team2606.robot.commands.TestCommandGroupLeft;
 import org.usfirst.frc.team2606.robot.commands.TestCommandGroupRight;
 import org.usfirst.frc.team2606.robot.commands.UpElbow;
+import org.usfirst.frc.team2606.robot.subsystems.Claw;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -48,18 +49,18 @@ public class OI {
 	private Joystick rightJoystick = RobotMap.RIGHT_JOYSTICK;
 
 	public OI() {
-		JoystickButton d_up = new JoystickButton(leftJoystick, 4);
-		JoystickButton d_right = new JoystickButton(leftJoystick, 2);
-		JoystickButton d_down = new JoystickButton(leftJoystick, 1);
-		JoystickButton d_left = new JoystickButton(leftJoystick, 3);
-		JoystickButton left = new JoystickButton(leftJoystick, 5);
-		JoystickButton right = new JoystickButton(leftJoystick, 6);
-		d_down.whenPressed(new DownElbow());
-		d_up.whenPressed(new UpElbow());
-		d_left.whenPressed(new CloseClaw());
-		d_right.whenPressed(new OpenClaw());
-		left.whenPressed(new TestCommandGroupLeft());
-		right.whenPressed(new TestCommandGroupRight());
+//		JoystickButton d_up = new JoystickButton(leftJoystick, 4);
+//		JoystickButton d_right = new JoystickButton(leftJoystick, 2);
+//		JoystickButton d_down = new JoystickButton(leftJoystick, 1);
+//		JoystickButton d_left = new JoystickButton(leftJoystick, 3);
+		JoystickButton trigger = new JoystickButton(rightJoystick, 1);
+		trigger.whenPressed(RobotMap.isClawOpen?new CloseClaw():new OpenClaw());
+//		d_down.whenPressed(new DownElbow());
+//		d_up.whenPressed(new UpElbow());
+//		d_left.whenPressed(new CloseClaw());
+//		d_right.whenPressed(new OpenClaw());
+//		left.whenPressed(new TestCommandGroupLeft());
+//		right.whenPressed(new TestCommandGroupRight());
 	}
 
 	public Joystick getLeftJoystick() {

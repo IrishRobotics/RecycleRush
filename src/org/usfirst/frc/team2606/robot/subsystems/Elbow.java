@@ -10,8 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Elbow extends Subsystem {
     
-	Solenoid downElbow = RobotMap.ELBOW_DOWN_SOLENOID;
-	Solenoid upElbow = RobotMap.ELBOW_UP_SOLENOID;
+	Solenoid Elbow = RobotMap.ELBOW_SOLENOID;
 
 	public Elbow() {
 		super();
@@ -21,13 +20,11 @@ public class Elbow extends Subsystem {
 	}
 
 	public void up() {
-		upElbow.set(true);
-		downElbow.set(false);
+		Elbow.set(true);
 	}
 
 	public void down() {
-		upElbow.set(false);
-		downElbow.set(true);
+		Elbow.set(false);
 	}
 }
 
