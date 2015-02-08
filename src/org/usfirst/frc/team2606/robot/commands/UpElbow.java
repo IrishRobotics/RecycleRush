@@ -26,12 +26,25 @@ public class UpElbow extends Command {
     	Robot.elbow.up();
     	Robot.elbow.up();
     	Robot.elbow.up();
+    	//Robot.elbow.down();
+    	Robot.elbow.down();
+    	Robot.elbow.up();
+    	Robot.elbow.up();
+    	Robot.elbow.up();
+    	Robot.elbow.up();
+    	//Robot.elbow.down();
+    	Robot.elbow.down();
+    	Robot.elbow.up();
+    	Robot.elbow.up();
+    	Robot.elbow.up();
+    	Robot.elbow.up();
+    	//Robot.elbow.down();
     	Robot.elbow.down();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !RobotMap.RIGHT_JOYSTICK.getRawButton(2);
+        return !RobotMap.RIGHT_JOYSTICK.getRawButton(3);
     }
 
     // Called once after isFinished returns true

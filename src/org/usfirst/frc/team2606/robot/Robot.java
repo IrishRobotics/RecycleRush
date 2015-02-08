@@ -29,6 +29,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	private Encoder encoder = RobotMap.SWIVEL_ENCODER;
 	private Gyro gyro = RobotMap.GYRO;
+
 	// Command autonomousCommand;
 
 	/**
@@ -65,7 +66,7 @@ public class Robot extends IterativeRobot {
 
 	public void teleopInit() {
 		encoder.reset();
-		gyro.reset();
+		drivetrain.reset();
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -86,10 +87,11 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("Encoder Value", RobotMap.SWIVEL_ENCODER.get());
+		SmartDashboard
+				.putNumber("Encoder Value", RobotMap.SWIVEL_ENCODER.get());
 		SmartDashboard.putNumber("Gyro angle ", gyro.getAngle());
 
-		claw.open();
+		drivetrain.log();
 	}
 
 	/**

@@ -1,16 +1,16 @@
 package org.usfirst.frc.team2606.robot.commands;
 
 import org.usfirst.frc.team2606.robot.Robot;
-import org.usfirst.frc.team2606.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class OpenClaw extends Command {
+public class ClawBothOn extends Command {
 
-	public OpenClaw() {
+	public ClawBothOn() {
+
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.claw);
@@ -18,12 +18,11 @@ public class OpenClaw extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.claw.open();
+		Robot.claw.bothOn();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

@@ -24,9 +24,10 @@ public class DriveTrain extends Subsystem {
 	private SpeedController rightMotor = RobotMap.RIGHT_MOTOR;
 	private RobotDrive drive;
 	private int direction;
-	// private Gyro gyro = RobotMap.GYRO;
-	// private double gyroDesiredHeading;
-	// private Encoder leftEncoder, rightEncoder;
+	private Gyro gyro = RobotMap.GYRO;
+	private double gyroDesiredHeading;
+	private Encoder leftEncoder = RobotMap.LEFT_DRIVE;
+	private Encoder rightEncoder = RobotMap.RIGHT_DRIVE;
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -34,10 +35,8 @@ public class DriveTrain extends Subsystem {
 	public DriveTrain() {
 		super();
 		drive = new RobotDrive(leftMotor, rightMotor);
-		// leftEncoder = new Encoder(1, 2);
-		// rightEncoder = new Encoder(3, 4);
-		// leftEncoder.setDistancePerPulse((6.0 / 12.0 * Math.PI) / 160.0);
-		// rightEncoder.setDistancePerPulse((6.0 / 12.0 * Math.PI) / 160.0);
+		leftEncoder.setDistancePerPulse((0.5 * Math.PI) / 360.0);
+		rightEncoder.setDistancePerPulse((0.5 * Math.PI) / 360.0);
 	}
 
 	/**
@@ -52,13 +51,11 @@ public class DriveTrain extends Subsystem {
 	 * The log method puts interesting information to the SmartDashboard.
 	 */
 	public void log() {
-		// SmartDashboard.putNumber("Left Distance",
-		// left_encoder.getDistance());
-		// SmartDashboard.putNumber("Right Distance",
-		// right_encoder.getDistance());
-		// SmartDashboard.putNumber("Left Speed", left_encoder.getRate());
-		// SmartDashboard.putNumber("Right Speed", right_encoder.getRate());
-		// SmartDashboard.putNumber("Gyro", gyro.getAngle());
+		SmartDashboard.putNumber("Left Distance", -leftEncoder.getDistance());
+		SmartDashboard.putNumber("Right Distance", rightEncoder.getDistance());
+		SmartDashboard.putNumber("Left Speed", -leftEncoder.getRate());
+		SmartDashboard.putNumber("Right Speed", rightEncoder.getRate());
+		SmartDashboard.putNumber("Gyro", gyro.getAngle());
 	}
 
 	/**
@@ -78,46 +75,45 @@ public class DriveTrain extends Subsystem {
 	 *            The ps3 style joystick to use to drive tank style.
 	 */
 	public void drive(Joystick leftJoystick) {
-		if(leftJoystick.getRawAxis(3) < -.75){
-			//drive(leftJoystick.getRawAxis(1) , leftJoystick.getRawAxis(5));
+		if (leftJoystick.getRawAxis(3) < -.75) {
+			drive(leftJoystick.getRawAxis(1), leftJoystick.getRawAxis(5));
 			direction = 1;
-			 SmartDashboard.putNumber("Reverse", leftJoystick.getRawAxis(3));
-		}else{
+			SmartDashboard.putNumber("Reverse", leftJoystick.getRawAxis(3));
+		} else {
 			direction = -1;
-			 SmartDashboard.putNumber("straight", leftJoystick.getRawAxis(3) * direction);
+			SmartDashboard.putNumber("straight", leftJoystick.getRawAxis(3)
+					* direction);
 		}
-			 //drive(leftJoystick.getRawAxis(1) * direction, leftJoystick.getRawAxis(5) * direction);
+		drive(leftJoystick.getRawAxis(1) * direction,
+				leftJoystick.getRawAxis(5) * direction);
 	}
-
+	
 	/**
 	 * Reset the robots sensors to the zero states.
 	 */
 	public void reset() {
-		// leftEncoder.reset();
-		// rightEncoder.reset();
-		// gyro.reset();
+		leftEncoder.reset();
+		rightEncoder.reset();
+		gyro.reset();
 	}
 
 	public void setGyroDesiredHeading() {
-		// gyroDesiredHeading = gyro.getAngle();
+		gyroDesiredHeading = gyro.getAngle();
 	}
 
 	public double getGyroRealHeading() {
-		return 0.0;// gyro.getAngle();
+		return gyro.getAngle();
 	}
 
 	public double GyroAngleError() {
-		return 0.0;// gyro.getAngle()-gyroDesiredHeading;
+		return gyro.getAngle() - gyroDesiredHeading;
 	}
 
 	public double getDistanceInFeet() {
-		return 0.0;// (leftEncoder.getDistance() + rightEncoder.getDistance()) /
-					// 2.0;
+		return (-leftEncoder.getDistance() + rightEncoder.getDistance()) / 2.0;
 	}
 
 	public double getDistanceInInches() {
-		return 0.0;// (leftEncoder.getDistance() + rightEncoder.getDistance()) *
-					// 6.0;
+		return (-leftEncoder.getDistance() + rightEncoder.getDistance()) * 6.0;
 	}
-
 }

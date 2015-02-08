@@ -16,15 +16,6 @@ import edu.wpi.first.wpilibj.Talon;
  * floating around.
  */
 public class RobotMap {
-	// For example to map the left and right motors, you could define the
-	// following variables to use with your drivetrain subsystem.
-	// public static int leftMotor = 1;
-	// public static int rightMotor = 2;
-
-	// If you are using multiple modules, make sure to define both the port
-	// number and the module. For example you with a rangefinder:
-	// public static int rangefinderPort = 1;
-	// public static int rangefinderModule = 1;
 	public static SpeedController LEFT_MOTOR = new Jaguar(0);
 	public static SpeedController RIGHT_MOTOR = new Jaguar(1);
 	public static SpeedController SWIVEL_MOTOR = new Talon(2);
@@ -32,13 +23,15 @@ public class RobotMap {
 	public static Joystick LEFT_JOYSTICK = new Joystick(0);
 	public static Joystick RIGHT_JOYSTICK = new Joystick(1);
 
-	public static Solenoid CLAW_SOLENOID = new Solenoid(0);
-	public static boolean isClawOpen = true;
-	public static Solenoid ELBOW_SOLENOID = new Solenoid(1);
+	public static Solenoid CLAW_OPEN_SOLENOID = new Solenoid(0);
+	public static Solenoid CLAW_CLOSE_SOLENOID = new Solenoid(1);
+	public static Solenoid ELBOW_SOLENOID = new Solenoid(2);
 
-	public static Gyro GYRO = new Gyro(0);
+	public static Gyro GYRO = new Gyro(1);
 
 	public static Encoder SWIVEL_ENCODER = new Encoder(0, 1, false,
 			CounterBase.EncodingType.k4X);
+	public static Encoder LEFT_DRIVE = new Encoder(2,3,false,CounterBase.EncodingType.k4X);
+	public static Encoder RIGHT_DRIVE = new Encoder(4,5,false,CounterBase.EncodingType.k4X);
 
 }
