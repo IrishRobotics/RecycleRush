@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class TestCommandGroupRight extends CommandGroup {
     
     public  TestCommandGroupRight() {
-    	//addSequential(new OpenClaw());
-       addSequential(new SetSwivelSetpoint(0));
+       addSequential(new SetSwivelSetpoint(-10));
     }
 }

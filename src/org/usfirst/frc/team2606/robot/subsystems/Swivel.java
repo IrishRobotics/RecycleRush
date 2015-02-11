@@ -52,10 +52,10 @@ public class Swivel extends PIDSubsystem {
      * the subsystem.
      */
     protected void usePIDOutput(double d) {
-        if(d>=1){
-            d=1;
-        }else if(d<=-1){
-            d=-1;
+        if(d>=.5){
+            d=.5;
+        }else if(d<=-.5){
+            d=-.5;
         }else if(-.1<d&&d<.1){
             d=2*d;
         }

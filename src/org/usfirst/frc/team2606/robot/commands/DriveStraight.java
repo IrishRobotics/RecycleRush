@@ -32,9 +32,9 @@ public class DriveStraight extends Command {
 					d = 2 * d;
 				}
 				if (gyroError > 0) {
-					Robot.drivetrain.drive(d,d - gyroError);
-				} else if (gyroError < 0) {
 					Robot.drivetrain.drive(d - gyroError,d);
+				} else if (gyroError < 0) {
+					Robot.drivetrain.drive(d,d + gyroError);
 				} else {
 					Robot.drivetrain.drive(d, d);
 				}
