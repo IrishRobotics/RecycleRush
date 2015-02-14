@@ -2,6 +2,7 @@ package org.usfirst.frc.team2606.robot;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
@@ -40,5 +41,6 @@ public class RobotMap {
 	public static Encoder RIGHT_DRIVE = new Encoder(4,5,false,CounterBase.EncodingType.k4X);
 	
 	public static AnalogInput RANGER_FINDER = new AnalogInput(1);
-	public static AxisCamera CAMERA = new AxisCamera("roboRIO2606.local");
+//	public static AxisCamera CAMERA = new AxisCamera("172.22.11.2");
+	public static CameraServer CAMERA_SERVER = CameraServer.getInstance();
 }

@@ -6,6 +6,7 @@ import org.usfirst.frc.team2606.robot.commands.TankDrive;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Joystick;
@@ -31,7 +32,7 @@ public class DriveTrain extends Subsystem {
 	private Encoder rightEncoder = RobotMap.RIGHT_DRIVE;
 	private AnalogInput elbowPotentiometer = RobotMap.ELBOW_ANALOG_POTENTIOMETER;
 	private AnalogInput rangefinder = RobotMap.RANGER_FINDER;
-
+	private CameraServer cam = RobotMap.CAMERA_SERVER;
 	public DriveTrain() {
 		super();
 		drive = new RobotDrive(leftMotor, rightMotor);
@@ -58,6 +59,8 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("Gyro", gyro.getAngle());
 		SmartDashboard.putNumber("Potentiometer", elbowPotentiometer.pidGet());
 		SmartDashboard.putNumber("RangeFinder", getDistanceToObstacle());
+	   	cam.setQuality(60);
+    	cam.startAutomaticCapture("cam0");
 	}
 
 	/**
