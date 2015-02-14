@@ -2,6 +2,7 @@ package org.usfirst.frc.team2606.robot;
 
 import org.usfirst.frc.team2606.robot.commands.ClawClose;
 import org.usfirst.frc.team2606.robot.commands.ClawOpen;
+import org.usfirst.frc.team2606.robot.subsystems.Camera;
 import org.usfirst.frc.team2606.robot.subsystems.Claw;
 import org.usfirst.frc.team2606.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2606.robot.subsystems.Elbow;
@@ -27,7 +28,7 @@ public class Robot extends IterativeRobot {
 	public static Elbow elbow;
 	public static Claw claw;
 	public static OI oi;
-
+	public static Camera camera;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -39,6 +40,7 @@ public class Robot extends IterativeRobot {
 		elbow = new Elbow();
 		claw = new Claw();
 		oi = new OI();
+		camera = new Camera();
 	}
 
 	public void disabledPeriodic() {

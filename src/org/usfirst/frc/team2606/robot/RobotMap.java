@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.vision.AxisCamera;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -39,4 +40,5 @@ public class RobotMap {
 	public static Encoder RIGHT_DRIVE = new Encoder(4,5,false,CounterBase.EncodingType.k4X);
 	
 	public static AnalogInput RANGER_FINDER = new AnalogInput(1);
+	public static AxisCamera CAMERA = new AxisCamera("roboRIO2606.local");
 }
