@@ -33,7 +33,7 @@ public class Camera extends Subsystem {
          * grab an image from the camera, draw the circle, and provide it for the camera server
          * which will in turn send it to the dashboard.
          */
-      
+    		cameraServer.
             Timer.delay(0.005);		// wait for a motor update time
     }
     
