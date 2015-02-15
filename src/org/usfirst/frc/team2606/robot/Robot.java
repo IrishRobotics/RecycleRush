@@ -28,7 +28,6 @@ public class Robot extends IterativeRobot {
 	public static Claw claw;
 	public static OI oi;
 
-
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -67,7 +66,6 @@ public class Robot extends IterativeRobot {
 	 * to reset subsystems before shutting down.
 	 */
 	public void disabledInit() {
-
 	}
 
 	/**
@@ -78,13 +76,15 @@ public class Robot extends IterativeRobot {
 		SmartDashboard
 				.putNumber("Encoder Value", RobotMap.SWIVEL_ENCODER.get());
 		log();
-		
+
 	}
-	public void log(){
+
+	public void log() {
 		drivetrain.log();
 		swivel.log();
 	}
-	public void reset(){
+
+	public void reset() {
 		drivetrain.reset();
 		swivel.reset();
 	}

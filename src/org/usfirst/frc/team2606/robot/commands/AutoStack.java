@@ -27,7 +27,7 @@ public class AutoStack extends CommandGroup {
       addSequential(new ElbowAutoDown(level));
       addSequential(new ClawOpen());
       addSequential(new ElbowUp());
-      addSequential(new DriveStraight(-4));
+     // addSequential(new DriveStraight(-4));
 
 
 

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2606.robot;
 
+import org.usfirst.frc.team2606.robot.commands.AutoStack;
 import org.usfirst.frc.team2606.robot.commands.ElbowAutoDown;
 import org.usfirst.frc.team2606.robot.commands.ElbowBalance;
 import org.usfirst.frc.team2606.robot.commands.ElbowStop;
@@ -64,9 +65,9 @@ public class OI {
 		top_right.whenPressed(new ClawOpen());
 		
 		bottom_mid_left.whenPressed(new ElbowStop());
-		bottom_mid_right.whenPressed(new ElbowAutoDown(1));
-		bottom_right_down.whenPressed(new ElbowAutoDown(2));
-		bottom_right_up.whenPressed(new ElbowAutoDown(3));
+		bottom_mid_right.whenPressed(new AutoStack(1));
+		bottom_right_down.whenPressed(new AutoStack(2));
+		bottom_right_up.whenPressed(new AutoStack(3));
 	}
 
 	public Joystick getLeftJoystick() {
