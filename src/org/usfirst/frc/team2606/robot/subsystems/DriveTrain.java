@@ -29,13 +29,11 @@ public class DriveTrain extends Subsystem {
 	private double gyroDesiredHeading;
 	private Encoder leftEncoder = RobotMap.LEFT_DRIVE;
 	private Encoder rightEncoder = RobotMap.RIGHT_DRIVE;
-	private AnalogInput elbowPotentiometer = RobotMap.ELBOW__ANALOG_POTENTIOMETER;
-
+	private AnalogInput elbowPotentiometer = RobotMap.ELBOW_ANALOG_POTENTIOMETER;
 	private AnalogInput rangefinder = RobotMap.RANGER_FINDER;
 
 	public DriveTrain() {
 		super();
-		reset();
 		drive = new RobotDrive(leftMotor, rightMotor);
 		leftEncoder.setDistancePerPulse((0.5 * Math.PI) / 360.0);
 		rightEncoder.setDistancePerPulse((0.5 * Math.PI) / 360.0);

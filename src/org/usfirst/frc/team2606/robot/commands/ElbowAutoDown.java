@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ElbowAutoDown extends Command {
 double PotentiometerOutput=0.0;
-	AnalogInput potentiometer = RobotMap.ELBOW__ANALOG_POTENTIOMETER;
+	AnalogInput potentiometer = RobotMap.ELBOW_ANALOG_POTENTIOMETER;
     public ElbowAutoDown(int level) {
     	requires(Robot.elbow);
     	switch(level){

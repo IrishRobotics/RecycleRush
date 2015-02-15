@@ -28,7 +28,6 @@ public class Robot extends IterativeRobot {
 	public static Claw claw;
 	public static OI oi;
 
-	// Command autonomousCommand;
 
 	/**
 	 * This function is run when the robot is first started up and should be

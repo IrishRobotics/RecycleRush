@@ -13,7 +13,7 @@ public class Elbow extends Subsystem {
 
 	Solenoid mElbowUp = RobotMap.ELBOW_UP_SOLENOID;
 	Solenoid mElbowDown = RobotMap.ELBOW_DOWN_SOLENOID;
-	AnalogInput elbowPoterntiometer = RobotMap.ELBOW__ANALOG_POTENTIOMETER;
+	AnalogInput elbowPoterntiometer = RobotMap.ELBOW_ANALOG_POTENTIOMETER;
 
 	public Elbow() {
 		super();

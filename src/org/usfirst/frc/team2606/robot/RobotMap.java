@@ -30,9 +30,9 @@ public class RobotMap {
 	public static Solenoid ELBOW_DOWN_SOLENOID = new Solenoid(7);
 	public static Solenoid CLAW_SOLENOID = new Solenoid(2);
 	
-	public static Gyro DRIVE_GYRO = new Gyro(1);
+	public static Gyro DRIVE_GYRO = new Gyro(0);
 
-	public static AnalogInput ELBOW__ANALOG_POTENTIOMETER = new AnalogInput(3);
+	public static AnalogInput ELBOW_ANALOG_POTENTIOMETER = new AnalogInput(3);
 
 	public static Encoder SWIVEL_ENCODER = new Encoder(0, 1, false,CounterBase.EncodingType.k4X);
 	public static Encoder LEFT_DRIVE = new Encoder(2,3,false,CounterBase.EncodingType.k4X);

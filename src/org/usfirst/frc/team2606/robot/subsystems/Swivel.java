@@ -20,13 +20,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Swivel extends Subsystem {
 	private SpeedController swivel = RobotMap.SWIVEL_MOTOR;
-	private Encoder encoder;
+	private Encoder encoder = RobotMap.SWIVEL_ENCODER;
 
 	// private static final double kP = 1/100.0,kI=0,kD = 0;
 	public Swivel() {
+		super();
 		// super(kP,kI, kD);
 		// setAbsoluteTolerance(0.005);
-		encoder = RobotMap.SWIVEL_ENCODER;
+		
 		reset();
 
 	}
