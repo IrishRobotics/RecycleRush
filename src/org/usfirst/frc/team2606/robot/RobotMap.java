@@ -38,5 +38,5 @@ public class RobotMap {
 	public static Encoder LEFT_DRIVE = new Encoder(2,3,false,CounterBase.EncodingType.k4X);
 	public static Encoder RIGHT_DRIVE = new Encoder(4,5,false,CounterBase.EncodingType.k4X);
 	
-
+	public static AnalogInput RANGER_FINDER = new AnalogInput(1);
 }

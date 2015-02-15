@@ -31,6 +31,8 @@ public class DriveTrain extends Subsystem {
 	private Encoder rightEncoder = RobotMap.RIGHT_DRIVE;
 	private AnalogInput elbowPotentiometer = RobotMap.ELBOW__ANALOG_POTENTIOMETER;
 
+	private AnalogInput rangefinder = RobotMap.RANGER_FINDER;
+
 	public DriveTrain() {
 		super();
 		reset();
@@ -57,6 +59,7 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("Right Speed", rightEncoder.getRate());
 		SmartDashboard.putNumber("Gyro", gyro.getAngle());
 		SmartDashboard.putNumber("Potentiometer", elbowPotentiometer.pidGet());
+		SmartDashboard.putNumber("RangeFinder", getDistanceToObstacle());
 	}
 
 	/**
@@ -88,7 +91,7 @@ public class DriveTrain extends Subsystem {
 		drive(leftJoystick.getRawAxis(1) * direction,
 				leftJoystick.getRawAxis(5) * direction);
 	}
-	
+
 	/**
 	 * Reset the robots sensors to the zero states.
 	 */
@@ -96,6 +99,10 @@ public class DriveTrain extends Subsystem {
 		leftEncoder.reset();
 		rightEncoder.reset();
 		gyro.reset();
+	}
+
+	public double getDistanceToObstacle() {
+		return rangefinder.getAverageVoltage()*104.16;
 	}
 
 	public void setGyroDesiredHeading() {
