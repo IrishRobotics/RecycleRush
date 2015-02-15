@@ -8,10 +8,8 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class UpElbow extends Command {
-    public UpElbow() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+public class ElbowUp extends Command {
+    public ElbowUp() {
     	requires(Robot.elbow);
     }
 
@@ -22,24 +20,7 @@ public class UpElbow extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elbow.up();
-    	Robot.elbow.up();
-    	Robot.elbow.up();
-    	Robot.elbow.up();
-    	//Robot.elbow.down();
-    	Robot.elbow.down();
-    	Robot.elbow.up();
-    	Robot.elbow.up();
-    	Robot.elbow.up();
-    	Robot.elbow.up();
-    	//Robot.elbow.down();
-    	Robot.elbow.down();
-    	Robot.elbow.up();
-    	Robot.elbow.up();
-    	Robot.elbow.up();
-    	Robot.elbow.up();
-    	//Robot.elbow.down();
-    	Robot.elbow.down();
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -49,7 +30,7 @@ public class UpElbow extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.elbow.up();
+    	Robot.elbow.stop();
     }
 
     // Called when another command which requires one or more of the same

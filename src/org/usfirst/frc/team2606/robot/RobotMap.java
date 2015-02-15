@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2606.robot;
 
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CounterBase;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
@@ -23,15 +25,18 @@ public class RobotMap {
 	public static Joystick LEFT_JOYSTICK = new Joystick(0);
 	public static Joystick RIGHT_JOYSTICK = new Joystick(1);
 
-	public static Solenoid CLAW_OPEN_SOLENOID = new Solenoid(0);
-	public static Solenoid CLAW_CLOSE_SOLENOID = new Solenoid(1);
-	public static Solenoid ELBOW_SOLENOID = new Solenoid(2);
+	// two solenoids allow us to "stop" the elbow as necessary
+	public static Solenoid ELBOW_UP_SOLENOID = new Solenoid(0);
+	public static Solenoid ELBOW_DOWN_SOLENOID = new Solenoid(7);
+	public static Solenoid CLAW_SOLENOID = new Solenoid(2);
+	
+	public static Gyro DRIVE_GYRO = new Gyro(1);
 
-	public static Gyro GYRO = new Gyro(1);
+	public static AnalogInput ELBOW__ANALOG_POTENTIOMETER = new AnalogInput(3);
 
-	public static Encoder SWIVEL_ENCODER = new Encoder(0, 1, false,
-			CounterBase.EncodingType.k4X);
+	public static Encoder SWIVEL_ENCODER = new Encoder(0, 1, false,CounterBase.EncodingType.k4X);
 	public static Encoder LEFT_DRIVE = new Encoder(2,3,false,CounterBase.EncodingType.k4X);
 	public static Encoder RIGHT_DRIVE = new Encoder(4,5,false,CounterBase.EncodingType.k4X);
+	
 
 }

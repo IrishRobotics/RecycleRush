@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class TestCommandGroupRight extends CommandGroup {
+public class SwivelRight extends CommandGroup {
     
-    public  TestCommandGroupRight() {
-       addSequential(new SetSwivelSetpoint(-10));
+    public  SwivelRight() {
+       addSequential(new SwivelSetpoint(-10));
     }
 }

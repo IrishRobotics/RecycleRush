@@ -12,8 +12,7 @@ public class Claw extends Subsystem {
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	Solenoid openClaw = RobotMap.CLAW_OPEN_SOLENOID;
-	Solenoid closeClaw = RobotMap.CLAW_CLOSE_SOLENOID;
+	Solenoid claw = RobotMap.CLAW_SOLENOID;
 
 	public Claw() {
 		super();
@@ -23,22 +22,11 @@ public class Claw extends Subsystem {
 	}
 
 	public void open() {
-		openClaw.set(true);
-		closeClaw.set(false);
+		claw.set(true);
 	}
 
 	public void close() {
-		openClaw.set(false);
-		closeClaw.set(true);
+		claw.set(false);
 	}
 
-	public void bothOn() {
-		openClaw.set(true);
-		closeClaw.set(true);
-	}
-
-	public void bothOff() {
-		openClaw.set(false);
-		closeClaw.set(false);
-	}
 }

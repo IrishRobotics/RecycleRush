@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2606.robot;
 
-import org.usfirst.frc.team2606.robot.commands.CloseClaw;
-import org.usfirst.frc.team2606.robot.commands.OpenClaw;
+import org.usfirst.frc.team2606.robot.commands.ClawClose;
+import org.usfirst.frc.team2606.robot.commands.ClawOpen;
 import org.usfirst.frc.team2606.robot.subsystems.Claw;
 import org.usfirst.frc.team2606.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2606.robot.subsystems.Elbow;
@@ -27,8 +27,6 @@ public class Robot extends IterativeRobot {
 	public static Elbow elbow;
 	public static Claw claw;
 	public static OI oi;
-	private Encoder encoder = RobotMap.SWIVEL_ENCODER;
-	private Gyro gyro = RobotMap.GYRO;
 
 	// Command autonomousCommand;
 
@@ -42,10 +40,6 @@ public class Robot extends IterativeRobot {
 		elbow = new Elbow();
 		claw = new Claw();
 		oi = new OI();
-		// instantiate the command used for the autonomous period
-		// autonomousCommand = new ExampleCommand();
-		encoder.reset();
-		gyro.reset();
 	}
 
 	public void disabledPeriodic() {
@@ -65,12 +59,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void teleopInit() {
-		encoder.reset();
-		drivetrain.reset();
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, remove
-		// this line or comment it out.
+		reset();
 		// if (autonomousCommand != null) autonomousCommand.cancel();
 	}
 
@@ -89,9 +78,16 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		SmartDashboard
 				.putNumber("Encoder Value", RobotMap.SWIVEL_ENCODER.get());
-		SmartDashboard.putNumber("Gyro angle ", gyro.getAngle());
-
+		log();
+		
+	}
+	public void log(){
 		drivetrain.log();
+		swivel.log();
+	}
+	public void reset(){
+		drivetrain.reset();
+		swivel.reset();
 	}
 
 	/**

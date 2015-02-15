@@ -5,6 +5,7 @@ import org.usfirst.frc.team2606.robot.RobotMap;
 import org.usfirst.frc.team2606.robot.commands.TankDrive;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Joystick;
@@ -24,16 +25,15 @@ public class DriveTrain extends Subsystem {
 	private SpeedController rightMotor = RobotMap.RIGHT_MOTOR;
 	private RobotDrive drive;
 	private int direction;
-	private Gyro gyro = RobotMap.GYRO;
+	private Gyro gyro = RobotMap.DRIVE_GYRO;
 	private double gyroDesiredHeading;
 	private Encoder leftEncoder = RobotMap.LEFT_DRIVE;
 	private Encoder rightEncoder = RobotMap.RIGHT_DRIVE;
-
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
+	private AnalogInput elbowPotentiometer = RobotMap.ELBOW__ANALOG_POTENTIOMETER;
 
 	public DriveTrain() {
 		super();
+		reset();
 		drive = new RobotDrive(leftMotor, rightMotor);
 		leftEncoder.setDistancePerPulse((0.5 * Math.PI) / 360.0);
 		rightEncoder.setDistancePerPulse((0.5 * Math.PI) / 360.0);
@@ -56,6 +56,7 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("Left Speed", -leftEncoder.getRate());
 		SmartDashboard.putNumber("Right Speed", rightEncoder.getRate());
 		SmartDashboard.putNumber("Gyro", gyro.getAngle());
+		SmartDashboard.putNumber("Potentiometer", elbowPotentiometer.pidGet());
 	}
 
 	/**

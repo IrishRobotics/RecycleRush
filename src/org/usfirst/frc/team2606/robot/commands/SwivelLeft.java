@@ -7,9 +7,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class TestCommandGroupLeft extends CommandGroup {
-    
-    public  TestCommandGroupLeft() {
-       addSequential(new SetSwivelSetpoint(10));
+public class SwivelLeft extends CommandGroup {
+    public  SwivelLeft() {
+       addSequential(new SwivelSetpoint(10));
     }
 }

@@ -7,11 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DownElbow extends Command {
+public class ElbowDown extends Command {
 
-    public DownElbow() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    public ElbowDown() {
     	requires(Robot.elbow);
     }
 
