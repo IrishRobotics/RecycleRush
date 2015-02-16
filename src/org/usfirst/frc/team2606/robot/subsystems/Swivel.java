@@ -27,7 +27,7 @@ public class Swivel extends Subsystem {
 		super();
 		// super(kP,kI, kD);
 		// setAbsoluteTolerance(0.005);
-		
+
 		reset();
 
 	}
@@ -37,9 +37,11 @@ public class Swivel extends Subsystem {
 		setDefaultCommand(new SwivelSetpoint());
 
 	}
-public void reset(){
-	encoder.reset();
-}
+
+	public void reset() {
+		encoder.reset();
+	}
+
 	public void log() {
 		SmartDashboard
 				.putNumber("Encoder Value", RobotMap.SWIVEL_ENCODER.get());

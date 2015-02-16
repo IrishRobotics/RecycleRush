@@ -5,34 +5,42 @@ import org.usfirst.frc.team2606.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class ElbowAutoDown extends Command {
-	double PotentiometerOutput = 0.0;
-	AnalogInput potentiometer = RobotMap.ELBOW_ANALOG_POTENTIOMETER;
+	double mVoltageDesired = 0.0, mCurrentVoltage = 0.0;
+	AnalogInput elbowPotentiometer = RobotMap.ELBOW_ANALOG_POTENTIOMETER;
+	double potentiometerDesired=0;
 
-	public ElbowAutoDown(int level) {
+	public ElbowAutoDown(double voltage) {
 		requires(Robot.elbow);
+		requires(Robot.claw);
+		mVoltageDesired = voltage;
+		/*
 		switch (level) {
 		case 1:
 			// level 1/floor
-			PotentiometerOutput = 4.728;
+			potentiometerDesired = 3.470;
 			break;
 		case 2:
 			// Level 2
-			PotentiometerOutput = 4.583;
+			potentiometerDesired = 3.303;
 			break;
 		case 3:
 			// Level 3
-			PotentiometerOutput = 4.388;
+			potentiometerDesired = 3.120;
 			break;
 		case 4:
 			// Level 4/top
-			PotentiometerOutput = 3.875;
+			potentiometerDesired = 2.611;
 			break;
 		}
+		*/
+
+		SmartDashboard.putNumber("voltage",mVoltageDesired);
 
 	}
 
@@ -44,15 +52,19 @@ public class ElbowAutoDown extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		mCurrentVoltage = elbowPotentiometer.pidGet();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return (potentiometer.pidGet() >= PotentiometerOutput);
+		return (mCurrentVoltage >= mVoltageDesired);
+		
+		//return (potentiometer.pidGet() >= mVoltage);
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
+		Robot.claw.open();
 	}
 
 	// Called when another command which requires one or more of the same

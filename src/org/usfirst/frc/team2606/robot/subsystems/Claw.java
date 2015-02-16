@@ -9,9 +9,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Claw extends Subsystem {
-
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
 	Solenoid claw = RobotMap.CLAW_SOLENOID;
 
 	public Claw() {
@@ -22,11 +19,11 @@ public class Claw extends Subsystem {
 	}
 
 	public void open() {
-		claw.set(true);
+		claw.set(false);
 	}
 
 	public void close() {
-		claw.set(false);
+		claw.set(true);
 	}
 
 }

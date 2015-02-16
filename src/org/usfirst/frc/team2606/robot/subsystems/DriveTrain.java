@@ -30,7 +30,7 @@ public class DriveTrain extends Subsystem {
 	private Encoder leftEncoder = RobotMap.LEFT_DRIVE;
 	private Encoder rightEncoder = RobotMap.RIGHT_DRIVE;
 	private AnalogInput elbowPotentiometer = RobotMap.ELBOW_ANALOG_POTENTIOMETER;
-	//private AnalogInput rangefinder = RobotMap.RANGER_FINDER;
+	// private AnalogInput rangefinder = RobotMap.RANGER_FINDER;
 	MaxbotixUltrasonic rangefinder;
 
 	public DriveTrain() {
@@ -59,9 +59,12 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("Right Speed", rightEncoder.getRate());
 		SmartDashboard.putNumber("Gyro", gyro.getAngle());
 		SmartDashboard.putNumber("Potentiometer", elbowPotentiometer.pidGet());
-		SmartDashboard.putNumber("RangeFinder 5", rangefinder.GetVoltage()/0.009766);
-		SmartDashboard.putNumber("RangeFinder 3.3", rangefinder.GetVoltage()/0.006574);
-		SmartDashboard.putNumber("RangeFinder Voltage ", rangefinder.GetVoltage());
+		SmartDashboard.putNumber("RangeFinder 5",
+				rangefinder.GetVoltage() / 0.009766);
+		SmartDashboard.putNumber("RangeFinder 3.3",
+				rangefinder.GetVoltage() / 0.006574);
+		SmartDashboard.putNumber("RangeFinder Voltage ",
+				rangefinder.GetVoltage());
 	}
 
 	/**
@@ -94,6 +97,10 @@ public class DriveTrain extends Subsystem {
 				leftJoystick.getRawAxis(5) * direction);
 	}
 
+	public void drive(Joystick joystick, int numJoystick) {
+		drive(joystick.getY() * .25, joystick.getY() * .25);
+	}
+
 	/**
 	 * Reset the robots sensors to the zero states.
 	 */
@@ -104,7 +111,7 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public double getDistanceToObstacle() {
-		//return rangefinder.GetRangeInInches();
+		// return rangefinder.GetRangeInInches();
 		return rangefinder.GetVoltage();
 	}
 

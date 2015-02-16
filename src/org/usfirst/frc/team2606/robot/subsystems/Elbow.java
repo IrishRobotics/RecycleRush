@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Elbow extends Subsystem {
 
-	Solenoid mElbowUp = RobotMap.ELBOW_UP_SOLENOID;
-	Solenoid mElbowDown = RobotMap.ELBOW_DOWN_SOLENOID;
+	Solenoid mElbowUp = RobotMap.ELBOW_UP_SOLENOID,
+			mElbowDown = RobotMap.ELBOW_DOWN_SOLENOID;
 	AnalogInput elbowPoterntiometer = RobotMap.ELBOW_ANALOG_POTENTIOMETER;
 
 	public Elbow() {
