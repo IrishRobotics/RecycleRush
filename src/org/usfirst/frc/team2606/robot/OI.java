@@ -59,10 +59,10 @@ public class OI {
 		top_left.whenPressed(new ClawClose());
 		top_right.whenPressed(new ClawOpen());
 		
-		bottom_mid_left.whenPressed(new ElbowStop());
-		bottom_mid_right.whenPressed(new ElbowAutoDown(1));
-		bottom_right_down.whenPressed(new ElbowAutoDown(2));
-		bottom_right_up.whenPressed(new ElbowAutoDown(3));
+		// bottom_mid_left.whenPressed(new ElbowStop());
+		bottom_mid_right.whenPressed(new ElbowAutoDown(3.15));
+		 bottom_right_down.whenPressed(new AutoStack(3.0));
+		// bottom_right_up.whenPressed(new AutoStack(3));
 	}
 
 	public Joystick getLeftJoystick() {
