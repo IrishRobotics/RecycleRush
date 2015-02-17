@@ -47,14 +47,10 @@ public class OI {
 		
 		X_x.whenPressed(new SwivelRight());
 		X_b.whenPressed(new SwivelLeft());
-		
 		if(rightJoystick.getX()>=.75){
 			new SwivelLeft();
 		}else if(rightJoystick.getX()<=-.75){
 			new SwivelLeft();
-		}
-		if(rightJoystick.getY() < 0){
-			Robot.drivetrain.drive(rightJoystick.getY()*.5, rightJoystick.getY() * .5);
 		}
 		
 		top_down.whenPressed(new ElbowDown());

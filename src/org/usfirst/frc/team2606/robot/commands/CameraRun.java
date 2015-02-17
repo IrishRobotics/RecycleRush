@@ -17,11 +17,14 @@ public class CameraRun extends Command {
 
 	    // Called just before this Command runs the first time
 	    protected void initialize() {
+	    	//Robot.camera.operatorControl();
 	    }
 
 	    // Called repeatedly when this Command is scheduled to run
 	    protected void execute() {
-	    	Robot.camera.operatorControl();
+	    	//Robot.camera.operatorControl();
+	    	//default without overlay
+	    	Robot.camera.log();
 	    }
 
 	    // Make this return true when this Command no longer needs to run execute()
