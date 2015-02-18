@@ -8,6 +8,7 @@ import org.usfirst.frc.team2606.robot.commands.ClawClose;
 import org.usfirst.frc.team2606.robot.commands.ElbowDown;
 import org.usfirst.frc.team2606.robot.commands.DriveStraight;
 import org.usfirst.frc.team2606.robot.commands.ClawOpen;
+import org.usfirst.frc.team2606.robot.commands.ElbowUnstop;
 import org.usfirst.frc.team2606.robot.commands.SwivelLeft;
 import org.usfirst.frc.team2606.robot.commands.SwivelRight;
 import org.usfirst.frc.team2606.robot.commands.ElbowUp;
@@ -59,6 +60,9 @@ public class OI {
 			Robot.drivetrain.drive(rightJoystick.getY() * -.5,
 					rightJoystick.getY() * -.5);
 		}
+		bottom_left_up.whenPressed(new ElbowStop());
+		bottom_left_down.whenPressed(new ElbowUnstop());
+		
 		top_down.whenPressed(new ElbowDown());
 		top_up.whenPressed(new ElbowUp());
 

@@ -30,6 +30,7 @@ public class RobotMap {
 	// two solenoids allow us to "stop" the elbow as necessary
 	public static Solenoid ELBOW_UP_SOLENOID = new Solenoid(0);
 	public static Solenoid ELBOW_DOWN_SOLENOID = new Solenoid(7);
+	public static Solenoid ELBOW_STOP = new Solenoid(4);
 	public static Solenoid CLAW_SOLENOID = new Solenoid(2);
 	
 	public static Gyro DRIVE_GYRO = new Gyro(0);
