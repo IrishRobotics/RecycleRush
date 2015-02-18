@@ -2,14 +2,22 @@ package org.usfirst.frc.team2606.robot;
 
 import org.usfirst.frc.team2606.robot.commands.ClawClose;
 import org.usfirst.frc.team2606.robot.commands.ClawOpen;
+import org.usfirst.frc.team2606.robot.subsystems.Camera;
 import org.usfirst.frc.team2606.robot.subsystems.Claw;
 import org.usfirst.frc.team2606.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2606.robot.subsystems.Elbow;
 import org.usfirst.frc.team2606.robot.subsystems.Swivel;
 
+import com.ni.vision.NIVision;
+import com.ni.vision.NIVision.DrawMode;
+import com.ni.vision.NIVision.Image;
+import com.ni.vision.NIVision.ShapeMode;
+
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -27,7 +35,11 @@ public class Robot extends IterativeRobot {
 	public static Elbow elbow;
 	public static Claw claw;
 	public static OI oi;
-
+	public static Camera camera;
+	
+	// used for drawing on the camera image.
+    int session;
+    Image frame;
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -38,6 +50,15 @@ public class Robot extends IterativeRobot {
 		elbow = new Elbow();
 		claw = new Claw();
 		oi = new OI();
+		camera = new Camera();
+		
+
+        frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
+
+        // the camera name (ex "cam0") can be found through the roborio web interface
+        session = NIVision.IMAQdxOpenCamera("cam0",
+                NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+        NIVision.IMAQdxConfigureGrab(session);
 	}
 
 	public void disabledPeriodic() {
@@ -59,6 +80,10 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		reset();
 		// if (autonomousCommand != null) autonomousCommand.cancel();
+		
+		// vision code.
+        NIVision.IMAQdxStartAcquisition(session);
+
 	}
 
 	/**
@@ -66,6 +91,8 @@ public class Robot extends IterativeRobot {
 	 * to reset subsystems before shutting down.
 	 */
 	public void disabledInit() {
+        NIVision.IMAQdxStopAcquisition(session);
+
 	}
 
 	/**
@@ -77,14 +104,60 @@ public class Robot extends IterativeRobot {
 				.putNumber("Encoder Value", RobotMap.SWIVEL_ENCODER.get());
 		log();
 
-	}
+        /**
+         * grab an image, draw the circle, and provide it for the camera server
+         * which will in turn send it to the dashboard.
+         */
+        NIVision.Rect rect = new NIVision.Rect(150, 150, 100, 460);
+        NIVision.Rect rect2 = new NIVision.Rect(120, 150, 140, 300);
+        //while (isOperatorControl() && isEnabled()) {
 
-	public void log() {
+            NIVision.IMAQdxGrab(session, frame, 1);
+            NIVision.imaqDrawShapeOnImage(frame, frame, rect,
+                    DrawMode.DRAW_VALUE, ShapeMode.SHAPE_RECT, 0.0f);
+            
+            CameraServer.getInstance().setImage(frame);
+            NIVision.imaqDrawShapeOnImage(frame, frame, rect2,
+                    DrawMode.DRAW_VALUE, ShapeMode.SHAPE_RECT, 0.0f);
+            CameraServer.getInstance().setImage(frame);
+            /** robot code here! **/
+           // Timer.delay(0.005);		// wait for a motor update time
+       // }
+		
+	}
+	
+	
+    public void operatorControl() {
+        NIVision.IMAQdxStartAcquisition(session);
+
+        /**
+         * grab an image, draw the circle, and provide it for the camera server
+         * which will in turn send it to the dashboard.
+         */
+        NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
+        NIVision.Rect rect2 = new NIVision.Rect(10, 10, 100, 100);
+        while (isOperatorControl() && isEnabled()) {
+
+            NIVision.IMAQdxGrab(session, frame, 1);
+            NIVision.imaqDrawShapeOnImage(frame, frame, rect,
+                    DrawMode.DRAW_VALUE, ShapeMode.SHAPE_OVAL, 0.0f);
+            CameraServer.getInstance().setImage(frame);
+            NIVision.imaqDrawShapeOnImage(frame, frame, rect2,
+                    DrawMode.DRAW_VALUE, ShapeMode.SHAPE_OVAL, 0.0f);
+            /** robot code here! **/
+            Timer.delay(0.005);		// wait for a motor update time
+        }
+        NIVision.IMAQdxStopAcquisition(session);
+        //Log.e("2606", "Got to operator Control");
+    }
+
+	
+	public void log(){
 		drivetrain.log();
 		swivel.log();
+		camera.log();
 	}
-
-	public void reset() {
+	public void reset(){
 		drivetrain.reset();
 		swivel.reset();
 	}

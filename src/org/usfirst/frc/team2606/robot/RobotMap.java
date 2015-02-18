@@ -35,12 +35,10 @@ public class RobotMap {
 	public static Gyro DRIVE_GYRO = new Gyro(0);
 
 	public static AnalogInput ELBOW_ANALOG_POTENTIOMETER = new AnalogInput(3);
-
 	public static Encoder SWIVEL_ENCODER = new Encoder(0, 1, false,CounterBase.EncodingType.k4X);
 	public static Encoder LEFT_DRIVE = new Encoder(2,3,false,CounterBase.EncodingType.k4X);
 	public static Encoder RIGHT_DRIVE = new Encoder(4,5,false,CounterBase.EncodingType.k4X);
 	
 	public static AnalogInput RANGER_FINDER = new AnalogInput(1);
-//	public static AxisCamera CAMERA = new AxisCamera("172.22.11.2");
 	public static CameraServer CAMERA_SERVER = CameraServer.getInstance();
 }
