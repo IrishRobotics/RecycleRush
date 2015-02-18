@@ -6,7 +6,6 @@ import org.usfirst.frc.team2606.robot.commands.TankDrive;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Joystick;
@@ -31,14 +30,15 @@ public class DriveTrain extends Subsystem {
 	private Encoder leftEncoder = RobotMap.LEFT_DRIVE;
 	private Encoder rightEncoder = RobotMap.RIGHT_DRIVE;
 	private AnalogInput elbowPotentiometer = RobotMap.ELBOW_ANALOG_POTENTIOMETER;
-	private AnalogInput rangefinder = RobotMap.RANGER_FINDER;
-	//default way to get camera to print
-	//private CameraServer cam = RobotMap.CAMERA_SERVER;
+	// private AnalogInput rangefinder = RobotMap.RANGER_FINDER;
+	MaxbotixUltrasonic rangefinder;
+
 	public DriveTrain() {
 		super();
 		drive = new RobotDrive(leftMotor, rightMotor);
 		leftEncoder.setDistancePerPulse((0.5 * Math.PI) / 360.0);
 		rightEncoder.setDistancePerPulse((0.5 * Math.PI) / 360.0);
+		rangefinder = new MaxbotixUltrasonic();
 	}
 
 	/**
@@ -59,8 +59,12 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("Right Speed", rightEncoder.getRate());
 		SmartDashboard.putNumber("Gyro", gyro.getAngle());
 		SmartDashboard.putNumber("Potentiometer", elbowPotentiometer.pidGet());
-		SmartDashboard.putNumber("RangeFinder", getDistanceToObstacle());
-		//cam.startAutomaticCapture("cam0");
+		SmartDashboard.putNumber("RangeFinder 5",
+				rangefinder.GetVoltage() / 0.009766);
+		SmartDashboard.putNumber("RangeFinder 3.3",
+				rangefinder.GetVoltage() / 0.006574);
+		SmartDashboard.putNumber("RangeFinder Voltage ",
+				rangefinder.GetVoltage());
 	}
 
 	/**
@@ -91,7 +95,10 @@ public class DriveTrain extends Subsystem {
 		}
 		drive(leftJoystick.getRawAxis(1) * direction,
 				leftJoystick.getRawAxis(5) * direction);
-		
+	}
+
+	public void drive(Joystick joystick, int numJoystick) {
+		drive(joystick.getY() * .25, joystick.getY() * .25);
 	}
 
 	/**
@@ -104,7 +111,8 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public double getDistanceToObstacle() {
-		return rangefinder.getAverageVoltage()*104.16;
+		// return rangefinder.GetRangeInInches();
+		return rangefinder.GetVoltage();
 	}
 
 	public void setGyroDesiredHeading() {
@@ -127,3 +135,4 @@ public class DriveTrain extends Subsystem {
 		return (-leftEncoder.getDistance() + rightEncoder.getDistance()) * 6.0;
 	}
 }
+

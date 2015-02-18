@@ -90,6 +90,7 @@ public class Robot extends IterativeRobot {
 	CameraThread cameraDrawer;
 
 
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -101,8 +102,6 @@ public class Robot extends IterativeRobot {
 		claw = new Claw();
 		oi = new OI();
 		camera = new Camera();
-		
-
 	}
 
 	public void disabledPeriodic() {
@@ -145,18 +144,19 @@ public class Robot extends IterativeRobot {
 		SmartDashboard
 				.putNumber("Encoder Value", RobotMap.SWIVEL_ENCODER.get());
 		log();
+		
 	}
+	
+
 	
 	public void log(){
 		drivetrain.log();
 		swivel.log();
-		camera.log();
 	}
 	public void reset(){
 		drivetrain.reset();
 		swivel.reset();
 	}
-
 	/**
 	 * This function is called periodically during test mode
 	 */

@@ -11,8 +11,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Elbow extends Subsystem {
 
-	Solenoid mElbowUp = RobotMap.ELBOW_UP_SOLENOID;
-	Solenoid mElbowDown = RobotMap.ELBOW_DOWN_SOLENOID;
+	Solenoid mElbowUp = RobotMap.ELBOW_UP_SOLENOID,
+			mElbowDown = RobotMap.ELBOW_DOWN_SOLENOID,
+			mElbowStop = RobotMap.ELBOW_STOP;
 	AnalogInput elbowPoterntiometer = RobotMap.ELBOW_ANALOG_POTENTIOMETER;
 
 	public Elbow() {
@@ -35,9 +36,12 @@ public class Elbow extends Subsystem {
 		setSolenoid(false, true);
 	}
 
+	public void unstop() {
+		mElbowStop.set(false);
+	}
+
 	public void stop() {
-		// turn on the JAM.
-		setSolenoid(false, false);
+		mElbowStop.set(true);
 	}
 
 	public void balance() {

@@ -12,7 +12,7 @@ public class CameraRun extends Command {
 	 public CameraRun() {
 	        // Use requires() here to declare subsystem dependencies
 	        // eg. requires(chassis);
-	    	requires(Robot.camera);
+	    	//requires(Robot.camera);
 	    }
 
 	    // Called just before this Command runs the first time
@@ -24,7 +24,7 @@ public class CameraRun extends Command {
 	    protected void execute() {
 	    	//Robot.camera.operatorControl();
 	    	//default without overlay
-	    	Robot.camera.log();
+	    	//Robot.camera.log();
 	    }
 
 	    // Make this return true when this Command no longer needs to run execute()
